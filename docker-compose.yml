@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  app:
+    image: thecodingmachine/php:7.2-v1-apache-node10
+    environment:
+      APACHE_DOCUMENT_ROOT: public/
+      PHP_EXTENSION_XDEBUG: 1
+      PHP_MEMORY_LIMIT: 1G
+      APP_ENV: dev
+      APP_SECRET: 8d2a5c935d8ef1c0e2b751147382bc75
+      DATABASE_URL: mysql://foo:bar@mysql:3306/foo
+    volumes:
+      - ./app:/var/www/html:rw
+
+volumes:
+  mysql_data:
+    driver: local
