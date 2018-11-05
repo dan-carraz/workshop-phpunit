@@ -168,3 +168,31 @@ Code coverage report
 ```
 
 Pay attention to your CRAP
+
+## Mock Objects, Stub Methods and Dependency Injection
+
+Read doc here https://phpunit.readthedocs.io/en/7.4/test-doubles.html
+
+PHPUnit comes with a very powerful feature to help us handle outside dependencies. It basically involves replacing the actual object with a fake, or ‘mock’, object that we fully control, removing all dependencies on outside systems or code that we really have no need to test.
+
+Use "injection dependency" to solve problem object instance
+
+Examining a mocked object
+
+```php
+$transaction = $this->createMock(\AuthorizeNetAIM::class);
+print_r(get_class_methods($authorizeNet));
+var_dump($authorizeNet->authorizeAndCapture()); -> all method return null
+```
+
+```php
+$transaction = $this->createMock(\AuthorizeNetAIM::class);
+
+$response = $this->createMock(\AuthorizeNetAIM_Response::class);
+$response->approved = true;
+$response->transaction_id = 123;
+
+$transaction->expects($this->once())
+    ->method('authorizeAndCapture')
+    ->willReturn($response);
+```    
