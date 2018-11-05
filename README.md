@@ -121,3 +121,29 @@ class SlugTest extends TestCase
         $this->assertSame($expectedResult, $result);
     }
 ```
+
+Avoid duplication code
+
+```php
+<?php
+// ...
+
+/**
+ * @dataProvider providerTestFoo
+ */
+public function testFoo($variableOne, $variableTwo)
+{
+    //
+}
+
+public function providerTestFoo()
+{
+    return array(
+        array('test 1, variable one', 'test 1, variable two'),
+        array('test 2, variable one', 'test 2, variable two'),
+        array('test 3, variable one', 'test 3, variable two'),
+        array('test 4, variable one', 'test 4, variable two'),
+        array('test 5, variable one', 'test 5, variable two'),
+    );
+}
+```
