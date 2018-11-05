@@ -99,3 +99,25 @@ class StupidTest extends TestCase
     }
 }
 ```
+
+## Assertions, Writing a Useful Test
+
+List of assertions: https://phpunit.readthedocs.io/en/7.4/assertions.html
+
+First test.
+
+```php
+class SlugTest extends TestCase
+{
+    public function testSluggifyReturnsSluggifiedString()
+    {
+        $originalString = 'This string will be sluggified';
+        $expectedResult = 'this-string-will-be-sluggified';
+
+        $slug = new Slug();
+
+        $result = $slug->sluggify($originalString);
+
+        $this->assertSame($expectedResult, $result);
+    }
+```
